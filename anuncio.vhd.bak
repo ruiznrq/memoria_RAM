@@ -1,0 +1,40 @@
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_ARITH.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY anuncio IS
+PORT
+(	
+	k0_modo: IN		STD_LOGIC;
+	k0_byte: IN		STD_LOGIC;
+	--Entradas que modifican el programa
+
+	--Salidas para manejar memoria
+	WrQ: OUT		STD_LOGIC;
+	RdQ: OUT		STD_LOGIC;
+	UpB: OUT		STD_LOGIC;
+	LoB: OUT		STD_LOGIC;
+	WrE: OUT		STD_LOGIC;
+	OuE: OUT		STD_LOGIC;
+	CE:  OUT		STD_LOGIC;
+	Add: OUT 	STD_LOGIC_VECTOR (2 DOWNTO 0); --3 bits de direccion
+	Data:	OUT 	STD_LOGIC_VECTOR (7 DOWNTO 0)  --8 bits de datos
+);
+	
+END anuncio;
+
+ARCHITECTURE anuncio_arch OF anuncio IS
+
+	signal estado: integer range 0 to 2 :=0;  --Definimos 0=APAGADO (por seguridad), 1=ESCRIBIR y 2=LEER
+
+begin
+
+
+	
+end architecture;
+			
+			
+		 
+			
+				

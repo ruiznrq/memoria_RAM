@@ -1,0 +1,65 @@
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_ARITH.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY mem_control IS
+PORT
+(	
+	D_M:	INOUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+	D_M_LED: OUT	STD_LOGIC;
+	D_O:	OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
+	D_O_LED: OUT STD_LOGIC;
+	D_I:	IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+	ADDRESS_O:	OUT STD_LOGIC_VECTOR (17 DOWNTO 0);
+	ADDR_LED: OUT	STD_LOGIC;
+	ADDRESS_I:	IN	STD_LOGIC_VECTOR (17 DOWNTO 0);
+	C_E_M: OUT 	STD_LOGIC;
+	W_E_M:	OUT		STD_LOGIC;
+	O_E_M: OUT		STD_LOGIC;
+	C_E_IN: IN 	STD_LOGIC;
+	W_E_IN:	IN		STD_LOGIC;
+	O_E_IN: IN		STD_LOGIC;
+	READ_QUERY:	IN	STD_LOGIC;
+	L_B_IN:	IN	STD_LOGIC;
+	U_B_IN:	IN	STD_LOGIC;
+	L_B_M:	OUT	STD_LOGIC;
+	U_B_M:	OUT	STD_LOGIC;
+	WRITE_QUERY: IN STD_LOGIC
+);
+	
+END MEM_CONTROL;
+
+ARCHITECTURE memory_arch OF mem_control IS
+
+begin
+
+	ADDRESS_O<=ADDRESS_I	when	(READ_QUERY='0' AND WRITE_QUERY='1') else
+			   ADDRESS_I	when	(READ_QUERY='1' AND WRITE_QUERY='0') else
+			   "ZZZZZZZZZZZZZZZZZZ";
+	
+	D_M<=D_I	when	(READ_QUERY='1' AND WRITE_QUERY='0') else
+		 (others=>'Z');
+
+	D_O<=D_M	when	(READ_QUERY='0' AND WRITE_QUERY='1') else
+		 (others=>'Z');
+		 
+	C_E_M<=C_E_IN;
+	
+	O_E_M<='0' when	(READ_QUERY='0' AND WRITE_QUERY='1' and O_E_IN='0') else
+		   '1';
+		   
+	W_E_M<='0' when	(READ_QUERY='1' AND WRITE_QUERY='0' and W_E_IN='0') else
+		   '1';
+		   
+	U_B_M<=U_B_IN;
+		
+	L_B_M<=L_B_IN;
+	
+	
+end architecture;
+			
+			
+		 
+			
+				

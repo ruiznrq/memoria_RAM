@@ -1,0 +1,125 @@
+# Copyright (C) 1991-2008 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+
+# The default values for assignments are stored in the file
+#		memory_control_ISSI_assignment_defaults.qdf
+# If this file doesn't exist, and for assignments not listed, see file
+#		assignment_defaults.qdf
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name FAMILY "Cyclone II"
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name TOP_LEVEL_ENTITY memory_control_ISSI
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 8.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "20:03:21  JUNE 01, 2014"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name USE_GENERATED_PHYSICAL_CONSTRAINTS OFF -section_id eda_blast_fpga
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_AE4 -to ADD_M0
+set_location_assignment PIN_AF4 -to ADD_M1
+set_location_assignment PIN_AC5 -to ADD_M2
+set_location_assignment PIN_AC6 -to ADD_M3
+set_location_assignment PIN_AD4 -to ADD_M4
+set_location_assignment PIN_AD5 -to ADD_M5
+set_location_assignment PIN_AE5 -to ADD_M6
+set_location_assignment PIN_AF5 -to ADD_M7
+set_location_assignment PIN_AD6 -to ADD_M8
+set_location_assignment PIN_AD7 -to ADD_M9
+set_location_assignment PIN_V10 -to ADD_M10
+set_location_assignment PIN_V9 -to ADD_M11
+set_location_assignment PIN_AC7 -to ADD_M12
+set_location_assignment PIN_W8 -to ADD_M13
+set_location_assignment PIN_W10 -to ADD_M14
+set_location_assignment PIN_Y10 -to ADD_M15
+set_location_assignment PIN_AB8 -to ADD_M16
+set_location_assignment PIN_AC8 -to ADD_M17
+set_location_assignment PIN_AE9 -to L_B_M
+set_location_assignment PIN_AF9 -to U_B_M
+set_location_assignment PIN_AE10 -to W_E_M
+set_location_assignment PIN_AD10 -to O_E_M
+set_location_assignment PIN_AC11 -to C_E_M
+set_location_assignment PIN_AE23 -to D_O0
+set_location_assignment PIN_AF23 -to D_O1
+set_location_assignment PIN_AB21 -to D_O2
+set_location_assignment PIN_AC22 -to D_O3
+set_location_assignment PIN_AD22 -to D_O4
+set_location_assignment PIN_AD23 -to D_O5
+set_location_assignment PIN_AD21 -to D_O6
+set_location_assignment PIN_AC21 -to D_O7
+set_location_assignment PIN_AA14 -to D_O8
+set_location_assignment PIN_Y13 -to D_O9
+set_location_assignment PIN_AA13 -to D_O10
+set_location_assignment PIN_AC14 -to D_O11
+set_location_assignment PIN_AD15 -to D_O12
+set_location_assignment PIN_AE15 -to D_O13
+set_location_assignment PIN_AF13 -to D_O14
+set_location_assignment PIN_AE13 -to D_O15
+set_location_assignment PIN_N25 -to D0
+set_location_assignment PIN_N26 -to D1
+set_location_assignment PIN_P25 -to D2
+set_location_assignment PIN_AE14 -to D3
+set_location_assignment PIN_AF14 -to D4
+set_location_assignment PIN_AD13 -to D5
+set_location_assignment PIN_AC13 -to D6
+set_location_assignment PIN_C13 -to D7
+set_location_assignment PIN_B13 -to ADD0
+set_location_assignment PIN_A13 -to ADD1
+set_location_assignment PIN_N1 -to ADD2
+set_location_assignment PIN_P1 -to C_E
+set_location_assignment PIN_P2 -to O_E
+set_location_assignment PIN_T7 -to W_E
+set_location_assignment PIN_U3 -to L_B_IN
+set_location_assignment PIN_U4 -to U_B_IN
+set_location_assignment PIN_V1 -to RD_Q
+set_location_assignment PIN_V2 -to WR_Q
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE memory_control_ISSI.vwf
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name BDF_FILE memory_control_ISSI.bdf
+set_global_assignment -name VHDL_FILE control_ISSI.vhd
+set_location_assignment PIN_AE22 -to ADD_LED
+set_location_assignment PIN_AF22 -to D_M_LED
+set_location_assignment PIN_W19 -to D_O_LED
+set_location_assignment PIN_AD8 -to DATA_M[15]
+set_location_assignment PIN_AE6 -to DATA_M[14]
+set_location_assignment PIN_AF6 -to DATA_M[13]
+set_location_assignment PIN_AA9 -to DATA_M[12]
+set_location_assignment PIN_AA10 -to DATA_M[11]
+set_location_assignment PIN_AB10 -to DATA_M[10]
+set_location_assignment PIN_AA11 -to DATA_M[9]
+set_location_assignment PIN_Y11 -to DATA_M[8]
+set_location_assignment PIN_AE7 -to DATA_M[7]
+set_location_assignment PIN_AF7 -to DATA_M[6]
+set_location_assignment PIN_AE8 -to DATA_M[5]
+set_location_assignment PIN_AF8 -to DATA_M[4]
+set_location_assignment PIN_W11 -to DATA_M[3]
+set_location_assignment PIN_W12 -to DATA_M[2]
+set_location_assignment PIN_AC9 -to DATA_M[1]
+set_location_assignment PIN_AC10 -to DATA_M[0]
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name VHDL_FILE anuncio.vhd
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
