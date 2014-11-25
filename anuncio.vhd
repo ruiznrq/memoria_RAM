@@ -37,6 +37,7 @@ ARCHITECTURE anuncio_arch OF anuncio IS
 	signal estado: integer range 0 to 2 :=0;  --Definimos 0=APAGADO (por seguridad), 1=ESCRIBIR y 2=LEER
 	--Señal con los bytes leidos para sacarlos por dysplay
 	signal display_s: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
+	signal display_s2: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
 	signal display_rotar: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
 	signal LedR_o_s: STD_LOGIC_VECTOR(17 DOWNTO 0):="000000000000000000";
 	--Señales que luego van a las salidas que conectan con memoria
@@ -68,17 +69,17 @@ begin
 
 ---Proceso de reloj-------------------------------
 	process (clk)
-	variable cont: integer range 0 to 5:=0;
+	variable cont: integer range 0 to 50:=0;
 	begin
 		IF (clk'event AND clk='1') THEN
 			IF ((estado = 1) OR (estado=0)) THEN
 				k1_s <= k1_byte;
 			ELSIF (estado = 2) THEN
-				IF (cont = 0) THEN
+				IF (cont = 1) THEN
 					k1_s <= '0';					
-				ELSIF (cont = 3) THEN
+				ELSIF (cont = 10) THEN
 					k1_s <= '1';
-				ELSIF (cont = 5) THEN
+				ELSIF (cont = 50) THEN
 					cont := 0;
 				END IF;
 				cont := cont + 1;
@@ -86,21 +87,16 @@ begin
 		END IF;	
 	END process;
 -----------------------------------------------
-
+ledG_o(7) <= k1_s;
 ---Proceso que cambia display----------------
 	process (k1_s)
 	variable numDis: integer range 0 to 8:=0; --8 displays, cuando llega a 8 paramos
 	variable display_aux: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
 	variable add_alta:	STD_LOGIC_VECTOR(3 DOWNTO 0):= "0000";
 	variable contador: integer range 0 to 1000000 := 0;
-	variable aux: STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
-	variable aux2: STD_LOGIC_VECTOR(27 downto 0) := "0000000000000000000000000000";
+	--variable aux: STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
+	--variable aux2: STD_LOGIC_VECTOR(27 downto 0) := "0000000000000000000000000000";
 	begin		
-		--Si el mensaje cambia, empezamos a leer de nuevo:
-		add_alta := Add_s(6 DOWNTO 3);
-		IF (NOT(add_alta = Add_s(6 DOWNTO 3))) THEN
-			numDis := 0;
-		END IF;
 		--Cuando hay flanco bajo, aumentamos addr, se mantiene bajo 3 ciclos de reloj:
 		IF (k1_s'event AND k1_s='0') THEN
 			IF (Add_s(2 DOWNTO 0)<"111") THEN
@@ -108,37 +104,43 @@ begin
 			ELSIF (Add_s(2 DOWNTO 0)="111") THEN
 				Add_s(2 DOWNTO 0)<="000";
 			END IF;
-		--Cuado tenemos flanco subida, si estamos en lectura, leemos 8 veces en display_aux
-		ELSIF ((k1_s'event AND k1_s='1') AND (estado = 2) AND (numDis <=7)) THEN --Esto solo se eecuta en lectura
-			IF (Add_s(2 DOWNTO 0)="000") THEN
-				display_aux(3 DOWNTO 0) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="001") THEN
-				display_aux(7 DOWNTO 4) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="010") THEN
-				display_aux(11 DOWNTO 8) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="011") THEN
-				display_aux(15 DOWNTO 12) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="100") THEN
-				display_aux(19 DOWNTO 16) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="101") THEN
-				display_aux(23 DOWNTO 20) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="110") THEN
-				display_aux(27 DOWNTO 24) := Datos_iMEM(3 DOWNTO 0);
-			ELSIF (Add_s(2 DOWNTO 0)="111") THEN
-				display_aux(31 DOWNTO 28) := Datos_iMEM(3 DOWNTO 0);
+		--Cuado tenemos flanco subida, SI estamos en lectura, leemos 8 veces en display_aux
+		ELSIF ((k1_s'event AND k1_s='1') AND (estado = 2)) THEN --Esto solo se ejecuta en lectura
+			--Si el mensaje cambia, empezamos a leer de nuevo:
+			IF (NOT(add_alta = Add_s(6 DOWNTO 3))) THEN
+				numDis := 0;
 			END IF;
-			numDis := numDis + 1;
-		END IF;
-		--Si estamos en lectura, contamos un segundo (un millon, ya se conto 5 antes), si en ese segundo se han leido todos los displays, rotamos:
-		IF (estado = 2) THEN
+			add_alta := Add_s(6 DOWNTO 3);
+			IF (numDis <=7) THEN
+				IF (Add_s(2 DOWNTO 0)="000") THEN
+					display_aux(3 DOWNTO 0) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="001") THEN
+					display_aux(7 DOWNTO 4) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="010") THEN
+					display_aux(11 DOWNTO 8) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="011") THEN
+					display_aux(15 DOWNTO 12) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="100") THEN
+					display_aux(19 DOWNTO 16) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="101") THEN
+					display_aux(23 DOWNTO 20) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="110") THEN
+					display_aux(27 DOWNTO 24) := Datos_iMEM(3 DOWNTO 0);
+				ELSIF (Add_s(2 DOWNTO 0)="111") THEN
+					display_aux(31 DOWNTO 28) := Datos_iMEM(3 DOWNTO 0);
+				END IF;
+				numDis := numDis + 1;
+			END IF;
+			--Si estamos en lectura, contamos un segundo (un millon, ya se conto 5 antes), si en ese segundo se han leido todos los displays, rotamos:
 			contador := contador + 1;
 			IF (numDis = 8) AND (contador = 1000000) THEN
 				contador := 0;
-				aux := display_aux(31 downto 28);
-				aux2:= display_aux(27 downto 0);
-				display_rotar <= aux2 & aux;
-			END IF;
-		END IF;			
+				--aux := display_aux(31 downto 28);
+				--aux2:= display_aux(27 downto 0);
+				display_rotar <= display_aux(27 downto 0) & display_aux(31 downto 28);
+				display_aux := display_rotar;
+			END IF;	
+		END IF;	
 	END process;
 -----------------------------------------------
 
@@ -200,7 +202,7 @@ begin
 
 ---Asignación del LEDs----------------------------------------------------------------	
 	--En los LED verdes mostramos la direccion
-	LedG_o <= Add_s(7 DOWNTO 0);
+	LedG_o(6 DOWNTO 0) <= Add_s(6 DOWNTO 0);
 	--En los led rojos mostramos el display escrito o el dato que se esta leyendo
 	LedR_o_s <= "100000000000000000" when ((Add_s(2 DOWNTO 0)="111") AND (estado=1)) else
 				   "010000000000000000" when ((Add_s(2 DOWNTO 0)="110") AND (estado=1)) else
@@ -219,23 +221,31 @@ begin
 
 ---Asignacion de Displays----------------------------------------------------------------------- 
 	display_s(3 DOWNTO 0) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="000")) else
-									 display_rotar(3 DOWNTO 0) when (estado=2);
+									 display_rotar(3 DOWNTO 0) when (estado=2) else
+									 display_s2(3 DOWNTO 0);
 	display_s(7 DOWNTO 4) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="001")) else
-									 display_rotar(7 DOWNTO 4) when (estado=2);
+									 display_rotar(7 DOWNTO 4) when (estado=2) else
+									 display_s2(7 DOWNTO 4);
 	display_s(11 DOWNTO 8) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="010")) else
-									 display_rotar(11 DOWNTO 8) when (estado=2);
+									  display_rotar(11 DOWNTO 8) when (estado=2) else
+									  display_s2(11 DOWNTO 8);
 	display_s(15 DOWNTO 12) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="011")) else
-									 display_rotar(15 DOWNTO 12) when (estado=2);
+										display_rotar(15 DOWNTO 12) when (estado=2) else
+										display_s2(15 DOWNTO 12);
 	display_s(19 DOWNTO 16) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="100")) else
-									 display_rotar(19 DOWNTO 16) when (estado=2);
+									   display_rotar(19 DOWNTO 16) when (estado=2) else
+										display_s2(19 DOWNTO 16);
 	display_s(23 DOWNTO 20) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="101")) else
-									 display_rotar(23 DOWNTO 20) when (estado=2);
+									   display_rotar(23 DOWNTO 20) when (estado=2) else
+										display_s2(23 DOWNTO 20);
 	display_s(27 DOWNTO 24) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="110")) else
-									 display_rotar(27 DOWNTO 24) when (estado=2);	
+									   display_rotar(27 DOWNTO 24) when (estado=2) else
+										display_s2(27 DOWNTO 24);
 	display_s(31 DOWNTO 28) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="111")) else
-									 display_rotar(31 DOWNTO 28) when (estado=2); 
-		
-	Disp_o <= display_s;
+									   display_rotar(31 DOWNTO 28) when (estado=2) else
+										display_s2(31 DOWNTO 28);
+	display_s2<=display_s;	
+	Disp_o <= display_s2;
 ------------------------------------------------------------------------------------------------
 					
 	
