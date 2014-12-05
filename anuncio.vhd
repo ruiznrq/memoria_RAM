@@ -8,11 +8,12 @@ PORT
 (	
 	--Entradas que modifican el comportamiento
 	clk:			IN		STD_LOGIC;
-	k0_modo: 	IN		STD_LOGIC;
-	k1_byte: 	IN		STD_LOGIC;
-	k2_msg:		IN		STD_LOGIC;
-	Datos_iMEM:	IN		STD_LOGIC_VECTOR (7 DOWNTO 0); --Datos para leer
-	Data_iSW:	IN    STD_LOGIC_VECTOR (7 DOWNTO 0); --Datos para escribir
+	k0_modo: 	IN		STD_LOGIC; --Cambio lectura/escritura
+	k1_byte: 	IN		STD_LOGIC; --Cambio display
+	k2_msg:		IN		STD_LOGIC; --Cambio de mensaje
+	--Entradas datos
+	Datos_iMEM:	IN		STD_LOGIC_VECTOR (7 DOWNTO 0); --Datos desde RAM
+	Data_iSW:	IN    STD_LOGIC_VECTOR (7 DOWNTO 0); --Datos desde SW
 	--Salidas que conectan a memoria
 	WrQ: OUT		STD_LOGIC;
 	RdQ: OUT		STD_LOGIC;
@@ -21,12 +22,12 @@ PORT
 	WrE: OUT		STD_LOGIC;
 	OuE: OUT		STD_LOGIC;
 	CE:  OUT		STD_LOGIC;
-	Add: OUT 	STD_LOGIC_VECTOR (17 DOWNTO 0); --3 bits de direccion
-	Data_oMEM:	OUT 	STD_LOGIC_VECTOR (7 DOWNTO 0);  --8 bits de datos a memoria
+	Add: OUT 	STD_LOGIC_VECTOR (17 DOWNTO 0);
+	Data_oMEM:	OUT 	STD_LOGIC_VECTOR (7 DOWNTO 0);  --8 bits de datos a memoria (usamos 4 bajos)
 	--Salidas visualización
-	LedG_o: OUT	STD_LOGIC_VECTOR (7 DOWNTO 0);
-	LedR_o: OUT STD_LOGIC_VECTOR (17 DOWNTO 0);
-	Disp_o: OUT STD_LOGIC_VECTOR (31 DOWNTO 0)
+	LedG_o: OUT	STD_LOGIC_VECTOR (7 DOWNTO 0); --Muestran direccion
+	LedR_o: OUT STD_LOGIC_VECTOR (17 DOWNTO 0); --Muestran dato leido (para depurar en placa)
+	Disp_o: OUT STD_LOGIC_VECTOR (31 DOWNTO 0) --Salida a displays
 );
 	
 END anuncio;
@@ -35,27 +36,28 @@ ARCHITECTURE anuncio_arch OF anuncio IS
 
 	--Señal de estado que indica el comportamiento del programa
 	signal estado: integer range 0 to 2 :=0;  --Definimos 0=APAGADO (por seguridad), 1=ESCRIBIR y 2=LEER
-	--Señal con los bytes leidos para sacarlos por dysplay
-	signal display_s: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
-	signal display_s2: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
-	signal display_rotar: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
+	--Señales intermedias antes de Disp_o (para almacenamiento)
+	signal display_s: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Almacenamiento
+	signal display_s2: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Almacenamiento
+	signal display_rotar: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Esta se rota
+	--Señal inicialización de los led rojos:
 	signal LedR_o_s: STD_LOGIC_VECTOR(17 DOWNTO 0):="000000000000000000";
 	--Señales que luego van a las salidas que conectan con memoria
 	signal WrQ_s: 	STD_LOGIC				:='1';
 	signal RdQ_s:	STD_LOGIC				:='1';
-	signal UpB_s: 	STD_LOGIC				:='0';
-	signal LoB_s: 	STD_LOGIC				:='1';
+	--signal UpB_s: 	STD_LOGIC				:='0';
+	--signal LoB_s: 	STD_LOGIC				:='1';
 	signal WrE_s: 	STD_LOGIC				:='1';
 	signal OuE_s: 	STD_LOGIC				:='1';
 	signal CE_s:  	STD_LOGIC				:='1';
 	signal Add_s: 	STD_LOGIC_VECTOR (17 DOWNTO 0) :="000000000000000000"; 	--8 bits de direccion
-	--Señales auxiliares para lectura
+	--Señal auxiliar: en escritura se corresponde con k1, en lectura es un reloj.
 	signal k1_s: 	STD_LOGIC 				:='1';
 
 begin
 
 ---Proceso que cambia el estado----------------
-	process (k0_modo)
+	process (k0_modo) --pasar a stdlogic
 	begin		
 		IF (k0_modo'event AND k0_modo='0') THEN
 			IF ((estado=0)OR(estado=2)) THEN
@@ -72,13 +74,13 @@ begin
 	variable cont: integer range 0 to 50:=0;
 	begin
 		IF (clk'event AND clk='1') THEN
-			IF ((estado = 1) OR (estado=0)) THEN
-				k1_s <= k1_byte;
-			ELSIF (estado = 2) THEN
+			IF ((estado = 1) OR (estado=0)) THEN  --Si estamos en escritura o apagado
+				k1_s <= k1_byte;  --La señal se corrsponde con el KEY1
+			ELSIF (estado = 2) THEN --Si estamos en lectura, la señal es un reloj.
 				IF (cont = 1) THEN
-					k1_s <= '0';					
+					k1_s <= '0';	--Lo bajamos al empezar, durante 10 ciclos (en la bajada cambia addr)			
 				ELSIF (cont = 10) THEN
-					k1_s <= '1';
+					k1_s <= '1';	--Lo levantamos a los 40 ciclos (tiempo de espera despues de cambiar addr)
 				ELSIF (cont = 50) THEN
 					cont := 0;
 				END IF;
@@ -87,30 +89,33 @@ begin
 		END IF;	
 	END process;
 -----------------------------------------------
-ledG_o(7) <= k1_s;
----Proceso que cambia display----------------
+
+ledG_o(7) <= k1_s; --Para depurar
+
+---Proceso que hace muchas cosas----------------
 	process (k1_s)
-	variable numDis: integer range 0 to 8:=0; --8 displays, cuando llega a 8 paramos
-	variable display_aux: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000";
-	variable add_alta:	STD_LOGIC_VECTOR(3 DOWNTO 0):= "0000";
-	variable contador: integer range 0 to 1000000 := 0;
-	--variable aux: STD_LOGIC_VECTOR(3 DOWNTO 0) := "0000";
-	--variable aux2: STD_LOGIC_VECTOR(27 downto 0) := "0000000000000000000000000000";
+	variable numDis: integer range 0 to 8:=0; --Contador de 8 displays, cuando llega a 8 paramos de leer
+	variable display_aux: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Aqui se va almacenando lo leido de RAM, luego se rota en otra señal
+	variable add_alta:	STD_LOGIC_VECTOR(3 DOWNTO 0):= "0000";	--Copia para ver si cambia el mensaje
+	variable est_ant: integer range 0 to 2:=0; --Copia para ver si cambia el estado
+	variable contador: integer range 0 to 1000000 := 0; --Contador de la rotacion -> 1s aprox.
 	begin		
-		--Cuando hay flanco bajo, aumentamos addr, se mantiene bajo 3 ciclos de reloj:
+		--Cuando hay flanco bajo, aumentamos addr (se mantiene bajo unos ciclos de reloj)
 		IF (k1_s'event AND k1_s='0') THEN
 			IF (Add_s(2 DOWNTO 0)<"111") THEN
 				Add_s(2 DOWNTO 0)<=Add_s(2 DOWNTO 0)+1;
-			ELSIF (Add_s(2 DOWNTO 0)="111") THEN
+			ELSIF (Add_s(2 DOWNTO 0)="111") THEN --OR ((NOT(add_alta = Add_s(6 DOWNTO 3))) OR (NOT(est_ant = estado))) THEN --Si cambia el mensaje o el estado, reiniciamos al primer display
 				Add_s(2 DOWNTO 0)<="000";
 			END IF;
-		--Cuado tenemos flanco subida, SI estamos en lectura, leemos 8 veces en display_aux
+		--Cuado tenemos flanco subida (y lectura):
 		ELSIF ((k1_s'event AND k1_s='1') AND (estado = 2)) THEN --Esto solo se ejecuta en lectura
 			--Si el mensaje cambia, empezamos a leer de nuevo:
-			IF (NOT(add_alta = Add_s(6 DOWNTO 3))) THEN
+			IF ((NOT(add_alta = Add_s(6 DOWNTO 3))) OR (NOT(est_ant = estado))) THEN
 				numDis := 0;
 			END IF;
 			add_alta := Add_s(6 DOWNTO 3);
+			est_ant := estado;
+			--Si quedan posiciones de RAM a leer, las guardamos en display_aux
 			IF (numDis <=7) THEN
 				IF (Add_s(2 DOWNTO 0)="000") THEN
 					display_aux(3 DOWNTO 0) := Datos_iMEM(3 DOWNTO 0);
@@ -131,14 +136,12 @@ ledG_o(7) <= k1_s;
 				END IF;
 				numDis := numDis + 1;
 			END IF;
-			--Si estamos en lectura, contamos un segundo (un millon, ya se conto 5 antes), si en ese segundo se han leido todos los displays, rotamos:
 			contador := contador + 1;
+			--Si se han leido las 8 posiciones, y ha pasado 1 segundo aprox, rotamos
 			IF (numDis = 8) AND (contador = 1000000) THEN
 				contador := 0;
-				--aux := display_aux(31 downto 28);
-				--aux2:= display_aux(27 downto 0);
 				display_rotar <= display_aux(27 downto 0) & display_aux(31 downto 28);
-				display_aux := display_rotar;
+				display_aux := display_aux(27 downto 0) & display_aux(31 downto 28);--XXXXXXXXXXXXXXXXXXXXX
 			END IF;	
 		END IF;	
 	END process;
@@ -190,9 +193,9 @@ ledG_o(7) <= k1_s;
 		  
 	CE<=CE_s; --Sobre CE no establecemos medidas de seguridad, el chip se mantiene encendido.
 	
-	UpB<=UpB_s;
+	UpB<='0';
 	
-	LoB<=LoB_s;
+	LoB<='1';
 	
 	Add<=Add_s;
 				
@@ -220,32 +223,32 @@ ledG_o(7) <= k1_s;
 -------------------------------------------------------------------------------------------	
 
 ---Asignacion de Displays----------------------------------------------------------------------- 
-	display_s(3 DOWNTO 0) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="000")) else
-									 display_rotar(3 DOWNTO 0) when (estado=2) else
-									 display_s2(3 DOWNTO 0);
+	display_s(3 DOWNTO 0) <=  Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="000")) else --Data_iSW(3 DOWNTO 0)
+									 display_rotar(3 DOWNTO 0) when (estado=2);
+									-- else display_s(3 DOWNTO 0);
 	display_s(7 DOWNTO 4) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="001")) else
-									 display_rotar(7 DOWNTO 4) when (estado=2) else
-									 display_s2(7 DOWNTO 4);
+									 display_rotar(7 DOWNTO 4) when (estado=2);
+									 --display_s(7 DOWNTO 4);
 	display_s(11 DOWNTO 8) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="010")) else
-									  display_rotar(11 DOWNTO 8) when (estado=2) else
-									  display_s2(11 DOWNTO 8);
+									  display_rotar(11 DOWNTO 8) when (estado=2);
+									  --display_s(11 DOWNTO 8);
 	display_s(15 DOWNTO 12) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="011")) else
-										display_rotar(15 DOWNTO 12) when (estado=2) else
-										display_s2(15 DOWNTO 12);
+										display_rotar(15 DOWNTO 12) when (estado=2);
+										--display_s(15 DOWNTO 12);
 	display_s(19 DOWNTO 16) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="100")) else
-									   display_rotar(19 DOWNTO 16) when (estado=2) else
-										display_s2(19 DOWNTO 16);
+									   display_rotar(19 DOWNTO 16) when (estado=2);
+										--display_s(19 DOWNTO 16);
 	display_s(23 DOWNTO 20) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="101")) else
-									   display_rotar(23 DOWNTO 20) when (estado=2) else
-										display_s2(23 DOWNTO 20);
+									   display_rotar(23 DOWNTO 20) when (estado=2);
+										--display_s(23 DOWNTO 20);
 	display_s(27 DOWNTO 24) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="110")) else
-									   display_rotar(27 DOWNTO 24) when (estado=2) else
-										display_s2(27 DOWNTO 24);
+									   display_rotar(27 DOWNTO 24) when (estado=2);
+										--display_s(27 DOWNTO 24);
 	display_s(31 DOWNTO 28) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="111")) else
-									   display_rotar(31 DOWNTO 28) when (estado=2) else
-										display_s2(31 DOWNTO 28);
-	display_s2<=display_s;	
-	Disp_o <= display_s2;
+									   display_rotar(31 DOWNTO 28) when (estado=2);
+										--display_s(31 DOWNTO 28);
+	--display_s2<=display_s;	
+	Disp_o <= display_s;
 ------------------------------------------------------------------------------------------------
 					
 	

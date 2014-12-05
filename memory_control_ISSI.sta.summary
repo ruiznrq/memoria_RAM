@@ -3,60 +3,60 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'anuncio:inst2|k1_s'
-Slack : -4.973
-TNS   : -351.563
+Slack : -5.771
+TNS   : -398.824
 
 Type  : Slow Model Setup 'clk_50MHz'
-Slack : -1.766
-TNS   : -8.939
-
-Type  : Slow Model Setup 'key2'
-Slack : 0.079
-TNS   : 0.000
-
-Type  : Slow Model Setup 'anuncio:inst2|estado[1]'
-Slack : 1.737
-TNS   : 0.000
+Slack : -1.878
+TNS   : -9.209
 
 Type  : Slow Model Setup 'anuncio:inst2|estado[0]'
-Slack : 1.801
-TNS   : 0.000
+Slack : -0.909
+TNS   : -16.677
+
+Type  : Slow Model Setup 'anuncio:inst2|estado[1]'
+Slack : -0.745
+TNS   : -14.667
+
+Type  : Slow Model Setup 'key2'
+Slack : -0.091
+TNS   : -0.091
 
 Type  : Slow Model Setup 'key0'
-Slack : 3.280
+Slack : 2.245
 TNS   : 0.000
 
-Type  : Slow Model Hold 'key0'
-Slack : -3.904
-TNS   : -7.001
+Type  : Slow Model Hold 'anuncio:inst2|estado[1]'
+Slack : -3.639
+TNS   : -96.882
 
 Type  : Slow Model Hold 'anuncio:inst2|estado[0]'
-Slack : -2.482
-TNS   : -21.550
-
-Type  : Slow Model Hold 'anuncio:inst2|estado[1]'
-Slack : -2.418
-TNS   : -21.206
-
-Type  : Slow Model Hold 'clk_50MHz'
-Slack : -1.696
-TNS   : -2.872
+Slack : -3.599
+TNS   : -93.744
 
 Type  : Slow Model Hold 'anuncio:inst2|k1_s'
-Slack : -1.618
-TNS   : -71.876
+Slack : -2.906
+TNS   : -184.272
+
+Type  : Slow Model Hold 'key0'
+Slack : -2.428
+TNS   : -4.642
+
+Type  : Slow Model Hold 'clk_50MHz'
+Slack : -1.830
+TNS   : -6.792
 
 Type  : Slow Model Hold 'key2'
 Slack : 0.391
 TNS   : 0.000
 
 Type  : Slow Model Recovery 'anuncio:inst2|estado[1]'
-Slack : 1.444
+Slack : 1.743
 TNS   : 0.000
 
 Type  : Slow Model Removal 'anuncio:inst2|estado[1]'
-Slack : -2.209
-TNS   : -13.932
+Slack : -2.747
+TNS   : -18.764
 
 Type  : Slow Model Minimum Pulse Width 'clk_50MHz'
 Slack : -1.380
@@ -72,7 +72,7 @@ TNS   : -3.222
 
 Type  : Slow Model Minimum Pulse Width 'anuncio:inst2|k1_s'
 Slack : -0.500
-TNS   : -93.000
+TNS   : -94.000
 
 Type  : Slow Model Minimum Pulse Width 'anuncio:inst2|estado[0]'
 Slack : 0.500
@@ -83,60 +83,60 @@ Slack : 0.500
 TNS   : 0.000
 
 Type  : Fast Model Setup 'anuncio:inst2|k1_s'
-Slack : -1.823
-TNS   : -120.230
+Slack : -2.187
+TNS   : -141.804
 
 Type  : Fast Model Setup 'clk_50MHz'
-Slack : -0.205
-TNS   : -0.610
+Slack : -0.279
+TNS   : -0.847
 
-Type  : Fast Model Setup 'key2'
-Slack : 0.539
+Type  : Fast Model Setup 'anuncio:inst2|estado[0]'
+Slack : 0.033
 TNS   : 0.000
 
 Type  : Fast Model Setup 'anuncio:inst2|estado[1]'
-Slack : 1.377
+Slack : 0.059
 TNS   : 0.000
 
-Type  : Fast Model Setup 'anuncio:inst2|estado[0]'
-Slack : 1.405
+Type  : Fast Model Setup 'key2'
+Slack : 0.466
 TNS   : 0.000
 
 Type  : Fast Model Setup 'key0'
-Slack : 2.113
+Slack : 1.635
 TNS   : 0.000
 
-Type  : Fast Model Hold 'key0'
-Slack : -2.127
-TNS   : -3.902
+Type  : Fast Model Hold 'anuncio:inst2|estado[1]'
+Slack : -2.036
+TNS   : -58.009
 
 Type  : Fast Model Hold 'anuncio:inst2|estado[0]'
-Slack : -1.420
-TNS   : -12.368
-
-Type  : Fast Model Hold 'anuncio:inst2|estado[1]'
-Slack : -1.401
-TNS   : -12.222
-
-Type  : Fast Model Hold 'clk_50MHz'
-Slack : -1.263
-TNS   : -4.281
+Slack : -1.988
+TNS   : -56.862
 
 Type  : Fast Model Hold 'anuncio:inst2|k1_s'
-Slack : -1.112
-TNS   : -65.752
+Slack : -1.820
+TNS   : -124.143
+
+Type  : Fast Model Hold 'key0'
+Slack : -1.477
+TNS   : -2.832
+
+Type  : Fast Model Hold 'clk_50MHz'
+Slack : -1.305
+TNS   : -5.919
 
 Type  : Fast Model Hold 'key2'
 Slack : 0.215
 TNS   : 0.000
 
 Type  : Fast Model Recovery 'anuncio:inst2|estado[1]'
-Slack : 1.300
+Slack : 1.474
 TNS   : 0.000
 
 Type  : Fast Model Removal 'anuncio:inst2|estado[1]'
-Slack : -1.356
-TNS   : -8.790
+Slack : -1.598
+TNS   : -11.078
 
 Type  : Fast Model Minimum Pulse Width 'clk_50MHz'
 Slack : -1.380
@@ -152,7 +152,7 @@ TNS   : -3.222
 
 Type  : Fast Model Minimum Pulse Width 'anuncio:inst2|k1_s'
 Slack : -0.500
-TNS   : -93.000
+TNS   : -94.000
 
 Type  : Fast Model Minimum Pulse Width 'anuncio:inst2|estado[0]'
 Slack : 0.500

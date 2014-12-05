@@ -713,7 +713,7 @@ GND                          : W22       : gnd    :                   :         
 RESERVED_INPUT               : W23       :        :                   :         : 6         :                
 HEX3_6                       : W24       : output : 3.3-V LVTTL       :         : 6         : Y              
 RESERVED_INPUT               : W25       :        :                   :         : 6         :                
-key3                         : W26       : input  : 3.3-V LVTTL       :         : 6         : Y              
+RESERVED_INPUT               : W26       :        :                   :         : 6         :                
 RESERVED_INPUT               : Y1        :        :                   :         : 1         :                
 NC                           : Y2        :        :                   :         :           :                
 RESERVED_INPUT               : Y3        :        :                   :         : 1         :                
