@@ -1,5 +1,5 @@
 Fitter report for memory_control_ISSI
-Fri Dec 05 11:12:35 2014
+Fri Dec 05 12:53:27 2014
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -67,7 +67,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Fitter Status                      ; Successful - Fri Dec 05 11:12:35 2014           ;
+; Fitter Status                      ; Successful - Fri Dec 05 12:53:27 2014           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; memory_control_ISSI                             ;
 ; Top-level Entity Name              ; memory_control_ISSI                             ;
@@ -1506,7 +1506,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                              ; Fan-Out ;
 +-----------------------------------+---------+
 ; anuncio:inst2|WrE~2               ; 73      ;
-; anuncio:inst2|process_2~11        ; 48      ;
+; anuncio:inst2|process_3~11        ; 48      ;
 ; anuncio:inst2|estado[0]           ; 46      ;
 ; anuncio:inst2|estado[1]           ; 44      ;
 ; anuncio:inst2|WrE~1               ; 43      ;
@@ -1577,13 +1577,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; anuncio:inst2|display_aux~66      ; 4       ;
 ; anuncio:inst2|display_aux~65      ; 4       ;
 ; anuncio:inst2|display_aux~64      ; 4       ;
-; anuncio:inst2|process_2~2         ; 4       ;
+; anuncio:inst2|process_3~2         ; 4       ;
 ; anuncio:inst2|cont[0]             ; 4       ;
 ; anuncio:inst2|cont[5]             ; 4       ;
 ; anuncio:inst2|cont[4]             ; 4       ;
-; anuncio:inst2|process_2~12        ; 3       ;
+; anuncio:inst2|process_3~12        ; 3       ;
 ; anuncio:inst2|numDis[0]           ; 3       ;
-; anuncio:inst2|process_2~3         ; 3       ;
+; anuncio:inst2|process_3~3         ; 3       ;
 ; anuncio:inst2|display_aux[8]      ; 3       ;
 ; anuncio:inst2|display_aux[10]     ; 3       ;
 ; anuncio:inst2|display_aux[11]     ; 3       ;
@@ -1659,33 +1659,33 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; anuncio:inst2|numDis~4            ; 2       ;
 ; anuncio:inst2|numDis~3            ; 2       ;
 ; anuncio:inst2|numDis~2            ; 2       ;
-; anuncio:inst2|Add2~0              ; 2       ;
+; anuncio:inst2|Add3~0              ; 2       ;
 ; anuncio:inst2|numDis[1]           ; 2       ;
 ; anuncio:inst2|numDis[2]           ; 2       ;
 ; anuncio:inst2|numDis~1            ; 2       ;
 ; anuncio:inst2|add_alta[1]         ; 2       ;
 ; anuncio:inst2|cont~11             ; 2       ;
 ; anuncio:inst2|cont~5              ; 2       ;
-; anuncio:inst2|Add3~38             ; 2       ;
-; anuncio:inst2|Add3~36             ; 2       ;
-; anuncio:inst2|Add3~34             ; 2       ;
-; anuncio:inst2|Add3~32             ; 2       ;
-; anuncio:inst2|Add3~30             ; 2       ;
-; anuncio:inst2|Add3~28             ; 2       ;
-; anuncio:inst2|Add3~26             ; 2       ;
-; anuncio:inst2|Add3~24             ; 2       ;
-; anuncio:inst2|Add3~22             ; 2       ;
-; anuncio:inst2|Add3~20             ; 2       ;
-; anuncio:inst2|Add3~18             ; 2       ;
-; anuncio:inst2|Add3~16             ; 2       ;
-; anuncio:inst2|Add3~14             ; 2       ;
-; anuncio:inst2|Add3~12             ; 2       ;
-; anuncio:inst2|Add3~10             ; 2       ;
-; anuncio:inst2|Add3~8              ; 2       ;
-; anuncio:inst2|Add3~6              ; 2       ;
-; anuncio:inst2|Add3~4              ; 2       ;
-; anuncio:inst2|Add3~2              ; 2       ;
-; anuncio:inst2|Add3~0              ; 2       ;
+; anuncio:inst2|Add4~38             ; 2       ;
+; anuncio:inst2|Add4~36             ; 2       ;
+; anuncio:inst2|Add4~34             ; 2       ;
+; anuncio:inst2|Add4~32             ; 2       ;
+; anuncio:inst2|Add4~30             ; 2       ;
+; anuncio:inst2|Add4~28             ; 2       ;
+; anuncio:inst2|Add4~26             ; 2       ;
+; anuncio:inst2|Add4~24             ; 2       ;
+; anuncio:inst2|Add4~22             ; 2       ;
+; anuncio:inst2|Add4~20             ; 2       ;
+; anuncio:inst2|Add4~18             ; 2       ;
+; anuncio:inst2|Add4~16             ; 2       ;
+; anuncio:inst2|Add4~14             ; 2       ;
+; anuncio:inst2|Add4~12             ; 2       ;
+; anuncio:inst2|Add4~10             ; 2       ;
+; anuncio:inst2|Add4~8              ; 2       ;
+; anuncio:inst2|Add4~6              ; 2       ;
+; anuncio:inst2|Add4~4              ; 2       ;
+; anuncio:inst2|Add4~2              ; 2       ;
+; anuncio:inst2|Add4~0              ; 2       ;
 ; anuncio:inst2|est_ant[1]~feeder   ; 1       ;
 ; D4                                ; 1       ;
 ; D5                                ; 1       ;
@@ -1753,18 +1753,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; anuncio:inst2|display_aux~35      ; 1       ;
 ; anuncio:inst2|display_aux~34      ; 1       ;
 ; anuncio:inst2|display_aux~33      ; 1       ;
-; anuncio:inst2|process_2~10        ; 1       ;
-; anuncio:inst2|process_2~9         ; 1       ;
-; anuncio:inst2|process_2~8         ; 1       ;
+; anuncio:inst2|process_3~10        ; 1       ;
+; anuncio:inst2|process_3~9         ; 1       ;
+; anuncio:inst2|process_3~8         ; 1       ;
 ; anuncio:inst2|contador[19]        ; 1       ;
 ; anuncio:inst2|contador[18]        ; 1       ;
-; anuncio:inst2|process_2~7         ; 1       ;
-; anuncio:inst2|process_2~6         ; 1       ;
+; anuncio:inst2|process_3~7         ; 1       ;
+; anuncio:inst2|process_3~6         ; 1       ;
 ; anuncio:inst2|contador[17]        ; 1       ;
 ; anuncio:inst2|contador[15]        ; 1       ;
 ; anuncio:inst2|contador[16]        ; 1       ;
-; anuncio:inst2|process_2~5         ; 1       ;
-; anuncio:inst2|process_2~4         ; 1       ;
+; anuncio:inst2|process_3~5         ; 1       ;
+; anuncio:inst2|process_3~4         ; 1       ;
 ; anuncio:inst2|contador[0]         ; 1       ;
 ; anuncio:inst2|contador[1]         ; 1       ;
 ; anuncio:inst2|contador[2]         ; 1       ;
@@ -1951,25 +1951,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; anuncio:inst2|display_aux[30]~3   ; 1       ;
 ; anuncio:inst2|display_aux[31]~1   ; 1       ;
 ; anuncio:inst2|display_aux[29]~0   ; 1       ;
-; anuncio:inst2|Add3~37             ; 1       ;
-; anuncio:inst2|Add3~35             ; 1       ;
-; anuncio:inst2|Add3~33             ; 1       ;
-; anuncio:inst2|Add3~31             ; 1       ;
-; anuncio:inst2|Add3~29             ; 1       ;
-; anuncio:inst2|Add3~27             ; 1       ;
-; anuncio:inst2|Add3~25             ; 1       ;
-; anuncio:inst2|Add3~23             ; 1       ;
-; anuncio:inst2|Add3~21             ; 1       ;
-; anuncio:inst2|Add3~19             ; 1       ;
-; anuncio:inst2|Add3~17             ; 1       ;
-; anuncio:inst2|Add3~15             ; 1       ;
-; anuncio:inst2|Add3~13             ; 1       ;
-; anuncio:inst2|Add3~11             ; 1       ;
-; anuncio:inst2|Add3~9              ; 1       ;
-; anuncio:inst2|Add3~7              ; 1       ;
-; anuncio:inst2|Add3~5              ; 1       ;
-; anuncio:inst2|Add3~3              ; 1       ;
-; anuncio:inst2|Add3~1              ; 1       ;
+; anuncio:inst2|Add4~37             ; 1       ;
+; anuncio:inst2|Add4~35             ; 1       ;
+; anuncio:inst2|Add4~33             ; 1       ;
+; anuncio:inst2|Add4~31             ; 1       ;
+; anuncio:inst2|Add4~29             ; 1       ;
+; anuncio:inst2|Add4~27             ; 1       ;
+; anuncio:inst2|Add4~25             ; 1       ;
+; anuncio:inst2|Add4~23             ; 1       ;
+; anuncio:inst2|Add4~21             ; 1       ;
+; anuncio:inst2|Add4~19             ; 1       ;
+; anuncio:inst2|Add4~17             ; 1       ;
+; anuncio:inst2|Add4~15             ; 1       ;
+; anuncio:inst2|Add4~13             ; 1       ;
+; anuncio:inst2|Add4~11             ; 1       ;
+; anuncio:inst2|Add4~9              ; 1       ;
+; anuncio:inst2|Add4~7              ; 1       ;
+; anuncio:inst2|Add4~5              ; 1       ;
+; anuncio:inst2|Add4~3              ; 1       ;
+; anuncio:inst2|Add4~1              ; 1       ;
 ; anuncio:inst2|cont[5]~16          ; 1       ;
 ; anuncio:inst2|cont[4]~15          ; 1       ;
 ; anuncio:inst2|cont[4]~14          ; 1       ;
@@ -2298,7 +2298,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "WR_Q" is assigned to location or region, but does not exist in design
     Warning (15706): Node "W_E" is assigned to location or region, but does not exist in design
     Warning (15706): Node "key3" is assigned to location or region, but does not exist in design
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (170191): Fitter placement operations beginning
@@ -2307,10 +2307,10 @@ Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 4% of the available device resources in the region that extends from location X22_Y0 to location X32_Y11
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.73 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.63 seconds.
 Info (306004): Started post-fitting delay annotation
 Warning (306006): Found 121 output pins without output pin load capacitance assignment
     Info (306007): Pin "ADD_M0" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
@@ -2442,7 +2442,7 @@ Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments 
 Info (144001): Generated suppressed messages file C:/Users/Quique/Dropbox/_Universidad/Diseño Digital Avanzado/PL4/memoria_RAM/memory_control_ISSI.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 18 warnings
     Info: Peak virtual memory: 671 megabytes
-    Info: Processing ended: Fri Dec 05 11:12:36 2014
+    Info: Processing ended: Fri Dec 05 12:53:28 2014
     Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:08
 

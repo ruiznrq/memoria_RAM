@@ -23,7 +23,7 @@ PORT
 	OuE: OUT		STD_LOGIC;
 	CE:  OUT		STD_LOGIC;
 	Add: OUT 	STD_LOGIC_VECTOR (17 DOWNTO 0);
-	Data_oMEM:	OUT 	STD_LOGIC_VECTOR (7 DOWNTO 0);  --8 bits de datos a memoria (usamos 4 bajos)
+	Data_oMEM:	OUT 	STD_LOGIC_VECTOR (7 DOWNTO 0);  --8 bits de datos a memoria (usamos 3 bajos para cada msg)
 	--Salidas visualización
 	LedG_o: OUT	STD_LOGIC_VECTOR (7 DOWNTO 0); --Muestran direccion
 	LedR_o: OUT STD_LOGIC_VECTOR (17 DOWNTO 0); --Muestran dato leido (para depurar en placa)
@@ -35,10 +35,9 @@ END anuncio;
 ARCHITECTURE anuncio_arch OF anuncio IS
 
 	--Señal de estado que indica el comportamiento del programa
-	signal estado: integer range 0 to 2 :=0;  --Definimos 0=APAGADO (por seguridad), 1=ESCRIBIR y 2=LEER
+	signal estado: integer range 0 to 2 :=0;  --Definimos 0=APAGADO (EN's a '1'), 1=ESCRIBIR y 2=LEER
 	--Señales intermedias antes de Disp_o (para almacenamiento)
 	signal display_s: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Almacenamiento
-	signal display_s2: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Almacenamiento
 	signal display_rotar: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Esta se rota
 	--Señal inicialización de los led rojos:
 	signal LedR_o_s: STD_LOGIC_VECTOR(17 DOWNTO 0):="000000000000000000";
@@ -57,7 +56,7 @@ ARCHITECTURE anuncio_arch OF anuncio IS
 begin
 
 ---Proceso que cambia el estado----------------
-	process (k0_modo) --pasar a stdlogic
+	process (k0_modo) --pasar a stdlogic --> No arreglo nada (menos las advertencias sobre ledr_o)
 	begin		
 		IF (k0_modo'event AND k0_modo='0') THEN
 			IF ((estado=0)OR(estado=2)) THEN
@@ -90,7 +89,19 @@ begin
 	END process;
 -----------------------------------------------
 
-ledG_o(7) <= k1_s; --Para depurar
+---Proceso que cambia mensaje----------------
+	process (k2_msg)
+	begin		
+		IF (k2_msg'event AND k2_msg='0') THEN
+			IF (Add_s(6 DOWNTO 3)<"0010") THEN
+				--Add_s <= std_logic_vector( unsigned(Add_s) + 1 );
+				Add_s(6 DOWNTO 3)<=Add_s(6 DOWNTO 3)+1;
+			ELSIF (Add_s(6 DOWNTO 3)="0010") THEN
+				Add_s(6 DOWNTO 3)<="0000";
+			END IF;
+		END IF;	
+	END process;
+-----------------------------------------------
 
 ---Proceso que hace muchas cosas----------------
 	process (k1_s)
@@ -141,22 +152,8 @@ ledG_o(7) <= k1_s; --Para depurar
 			IF (numDis = 8) AND (contador = 1000000) THEN
 				contador := 0;
 				display_rotar <= display_aux(27 downto 0) & display_aux(31 downto 28);
-				display_aux := display_aux(27 downto 0) & display_aux(31 downto 28);--XXXXXXXXXXXXXXXXXXXXX
+				display_aux := display_aux(27 downto 0) & display_aux(31 downto 28);-----------> Esto ARREGLÓ lo del parpadeo de 0's durante la rotación
 			END IF;	
-		END IF;	
-	END process;
------------------------------------------------
-
----Proceso que cambia mensaje----------------
-	process (k2_msg)
-	begin		
-		IF (k2_msg'event AND k2_msg='0') THEN
-			IF (Add_s(6 DOWNTO 3)<"0010") THEN
-				--Add_s <= std_logic_vector( unsigned(Add_s) + 1 );
-				Add_s(6 DOWNTO 3)<=Add_s(6 DOWNTO 3)+1;
-			ELSIF (Add_s(6 DOWNTO 3)="0010") THEN
-				Add_s(6 DOWNTO 3)<="0000";
-			END IF;
 		END IF;	
 	END process;
 -----------------------------------------------
@@ -199,7 +196,7 @@ ledG_o(7) <= k1_s; --Para depurar
 	
 	Add<=Add_s;
 				
-	Data_oMEM<=Data_iSW when ((WrQ_s='0') AND (RdQ_s='1') AND (WrE_s='0') AND (OuE_s<='1')) else
+	Data_oMEM<=Data_iSW when ((WrQ_s='0') AND (RdQ_s='1') AND (WrE_s='0') AND (OuE_s<='1')) else --Aqui podría haber puesto estado como condición, pero es lo mismo...
 					"ZZZZZZZZ" when ((WrQ_s='1') AND (RdQ_s='0') AND (WrE_s='1') AND (OuE_s<='0'));
 ---------------------------------------------------------------------------			
 
@@ -220,41 +217,27 @@ ledG_o(7) <= k1_s; --Para depurar
 								 LedR_o_s(7 DOWNTO 0) when ((estado = 1) OR (estado = 0));
 	LedR_o(17 DOWNTO 8) <= "0000000000" when ((estado = 2)) else
 								  LedR_o_s(17 DOWNTO 8) when ((estado = 1) OR (estado = 0));
+	ledG_o(7) <= k1_s; --Para depurar
 -------------------------------------------------------------------------------------------	
 
 ---Asignacion de Displays----------------------------------------------------------------------- 
-	display_s(3 DOWNTO 0) <=  Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="000")) else --Data_iSW(3 DOWNTO 0)
-									 display_rotar(3 DOWNTO 0) when (estado=2);
-									-- else display_s(3 DOWNTO 0);
+	display_s(3 DOWNTO 0) <=  Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="000")) else 
+									  display_rotar(3 DOWNTO 0) when (estado=2);
 	display_s(7 DOWNTO 4) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="001")) else
 									 display_rotar(7 DOWNTO 4) when (estado=2);
-									 --display_s(7 DOWNTO 4);
 	display_s(11 DOWNTO 8) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="010")) else
 									  display_rotar(11 DOWNTO 8) when (estado=2);
-									  --display_s(11 DOWNTO 8);
 	display_s(15 DOWNTO 12) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="011")) else
 										display_rotar(15 DOWNTO 12) when (estado=2);
-										--display_s(15 DOWNTO 12);
 	display_s(19 DOWNTO 16) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="100")) else
 									   display_rotar(19 DOWNTO 16) when (estado=2);
-										--display_s(19 DOWNTO 16);
 	display_s(23 DOWNTO 20) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="101")) else
 									   display_rotar(23 DOWNTO 20) when (estado=2);
-										--display_s(23 DOWNTO 20);
 	display_s(27 DOWNTO 24) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="110")) else
 									   display_rotar(27 DOWNTO 24) when (estado=2);
-										--display_s(27 DOWNTO 24);
 	display_s(31 DOWNTO 28) <= Data_iSW(3 DOWNTO 0) when ((estado=1) AND (Add_s(2 DOWNTO 0)="111")) else
 									   display_rotar(31 DOWNTO 28) when (estado=2);
-										--display_s(31 DOWNTO 28);
-	--display_s2<=display_s;	
 	Disp_o <= display_s;
-------------------------------------------------------------------------------------------------
-					
+------------------------------------------------------------------------------------------------				
 	
 end architecture;
-			
-			
-		 
-			
-				

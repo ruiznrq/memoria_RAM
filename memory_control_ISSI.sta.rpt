@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for memory_control_ISSI
-Fri Dec 05 11:12:40 2014
+Fri Dec 05 12:53:32 2014
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -5568,7 +5568,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Dec 05 11:12:39 2014
+    Info: Processing started: Fri Dec 05 12:53:31 2014
 Info: Command: quartus_sta memory_control_ISSI -c memory_control_ISSI
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -5703,7 +5703,7 @@ Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 409 megabytes
-    Info: Processing ended: Fri Dec 05 11:12:40 2014
+    Info: Processing ended: Fri Dec 05 12:53:32 2014
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
