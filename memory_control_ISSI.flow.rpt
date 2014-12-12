@@ -1,5 +1,5 @@
 Flow report for memory_control_ISSI
-Fri Dec 05 12:53:32 2014
+Fri Dec 12 11:18:55 2014
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Dec 05 12:53:30 2014           ;
+; Flow Status                        ; Successful - Fri Dec 12 11:18:53 2014           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; memory_control_ISSI                             ;
 ; Top-level Entity Name              ; memory_control_ISSI                             ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C35F672C6                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 336 / 33,216 ( 1 % )                            ;
-;     Total combinational functions  ; 336 / 33,216 ( 1 % )                            ;
-;     Dedicated logic registers      ; 105 / 33,216 ( < 1 % )                          ;
-; Total registers                    ; 105                                             ;
+; Total logic elements               ; 339 / 33,216 ( 1 % )                            ;
+;     Total combinational functions  ; 337 / 33,216 ( 1 % )                            ;
+;     Dedicated logic registers      ; 107 / 33,216 ( < 1 % )                          ;
+; Total registers                    ; 107                                             ;
 ; Total pins                         ; 133 / 475 ( 28 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 483,840 ( 0 % )                             ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/05/2014 12:53:17 ;
+; Start date & time ; 12/12/2014 11:18:40 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; memory_control_ISSI ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+--------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                          ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+--------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 66485664160137.141778039703232 ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 66485664160137.141837952000100 ; --            ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                             ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                              ; --            ; --          ; --             ;
 ; PARTITION_COLOR                     ; 16764057                       ; --            ; --          ; Top            ;
@@ -90,11 +90,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 502 MB              ; 00:00:02                           ;
-; Fitter                    ; 00:00:07     ; 1.0                     ; 671 MB              ; 00:00:08                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 430 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 409 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:12     ; --                      ; --                  ; 00:00:13                           ;
+; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 497 MB              ; 00:00:02                           ;
+; Fitter                    ; 00:00:08     ; 1.0                     ; 668 MB              ; 00:00:07                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 427 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 417 MB              ; 00:00:02                           ;
+; Total                     ; 00:00:13     ; --                      ; --                  ; 00:00:13                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

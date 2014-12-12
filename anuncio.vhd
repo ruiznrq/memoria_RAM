@@ -106,6 +106,7 @@ begin
 ---Proceso que hace muchas cosas----------------
 	process (k1_s)
 	variable numDis: integer range 0 to 8:=0; --Contador de 8 displays, cuando llega a 8 paramos de leer
+	variable reiniciar: STD_LOGIC := '0';
 	variable display_aux: STD_LOGIC_VECTOR(31 DOWNTO 0):="00000000000000000000000000000000"; --Aqui se va almacenando lo leido de RAM, luego se rota en otra señal
 	variable add_alta:	STD_LOGIC_VECTOR(3 DOWNTO 0):= "0000";	--Copia para ver si cambia el mensaje
 	variable est_ant: integer range 0 to 2:=0; --Copia para ver si cambia el estado
@@ -118,15 +119,20 @@ begin
 			ELSIF (Add_s(2 DOWNTO 0)="111") THEN --OR ((NOT(add_alta = Add_s(6 DOWNTO 3))) OR (NOT(est_ant = estado))) THEN --Si cambia el mensaje o el estado, reiniciamos al primer display
 				Add_s(2 DOWNTO 0)<="000";
 			END IF;
-		--Cuado tenemos flanco subida (y lectura):
-		ELSIF ((k1_s'event AND k1_s='1') AND (estado = 2)) THEN --Esto solo se ejecuta en lectura
 			--Si el mensaje cambia, empezamos a leer de nuevo:
 			IF ((NOT(add_alta = Add_s(6 DOWNTO 3))) OR (NOT(est_ant = estado))) THEN
-				numDis := 0;
+				reiniciar := '1';
+			ELSE
+				reiniciar := '0';
 			END IF;
 			add_alta := Add_s(6 DOWNTO 3);
 			est_ant := estado;
+		--Cuado tenemos flanco subida (y lectura):
+		ELSIF ((k1_s'event AND k1_s='1') AND (estado = 2)) THEN --Esto solo se ejecuta en lectura
 			--Si quedan posiciones de RAM a leer, las guardamos en display_aux
+			IF (reiniciar='1') THEN
+				numDis := 0;
+			END IF;
 			IF (numDis <=7) THEN
 				IF (Add_s(2 DOWNTO 0)="000") THEN
 					display_aux(3 DOWNTO 0) := Datos_iMEM(3 DOWNTO 0);

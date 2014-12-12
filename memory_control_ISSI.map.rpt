@@ -1,5 +1,5 @@
 Analysis & Synthesis report for memory_control_ISSI
-Fri Dec 05 12:53:19 2014
+Fri Dec 12 11:18:42 2014
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -46,15 +46,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 05 12:53:19 2014           ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 12 11:18:42 2014           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; memory_control_ISSI                             ;
 ; Top-level Entity Name              ; memory_control_ISSI                             ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 340                                             ;
-;     Total combinational functions  ; 335                                             ;
-;     Dedicated logic registers      ; 105                                             ;
-; Total registers                    ; 105                                             ;
+; Total logic elements               ; 343                                             ;
+;     Total combinational functions  ; 337                                             ;
+;     Dedicated logic registers      ; 107                                             ;
+; Total registers                    ; 107                                             ;
 ; Total pins                         ; 133                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -176,28 +176,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+--------------------+
 ; Resource                                    ; Usage              ;
 +---------------------------------------------+--------------------+
-; Estimated Total logic elements              ; 340                ;
+; Estimated Total logic elements              ; 343                ;
 ;                                             ;                    ;
-; Total combinational functions               ; 335                ;
+; Total combinational functions               ; 337                ;
 ; Logic element usage by number of LUT inputs ;                    ;
-;     -- 4 input functions                    ; 138                ;
-;     -- 3 input functions                    ; 159                ;
-;     -- <=2 input functions                  ; 38                 ;
+;     -- 4 input functions                    ; 146                ;
+;     -- 3 input functions                    ; 158                ;
+;     -- <=2 input functions                  ; 33                 ;
 ;                                             ;                    ;
 ; Logic elements by mode                      ;                    ;
-;     -- normal mode                          ; 312                ;
+;     -- normal mode                          ; 314                ;
 ;     -- arithmetic mode                      ; 23                 ;
 ;                                             ;                    ;
-; Total registers                             ; 105                ;
-;     -- Dedicated logic registers            ; 105                ;
+; Total registers                             ; 107                ;
+;     -- Dedicated logic registers            ; 107                ;
 ;     -- I/O registers                        ; 0                  ;
 ;                                             ;                    ;
 ; I/O pins                                    ; 133                ;
 ; Embedded Multiplier 9-bit elements          ; 0                  ;
 ; Maximum fan-out node                        ; anuncio:inst2|k1_s ;
-; Maximum fan-out                             ; 97                 ;
-; Total fan-out                               ; 1600               ;
-; Average fan-out                             ; 2.79               ;
+; Maximum fan-out                             ; 99                 ;
+; Total fan-out                               ; 1621               ;
+; Average fan-out                             ; 2.81               ;
 +---------------------------------------------+--------------------+
 
 
@@ -206,7 +206,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
-; |memory_control_ISSI       ; 335 (0)           ; 105 (0)      ; 0           ; 0            ; 0       ; 0         ; 133  ; 0            ; |memory_control_ISSI                  ; work         ;
+; |memory_control_ISSI       ; 337 (0)           ; 107 (0)      ; 0           ; 0            ; 0       ; 0         ; 133  ; 0            ; |memory_control_ISSI                  ; work         ;
 ;    |7447:inst10|           ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst10      ; work         ;
 ;    |7447:inst1|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst1       ; work         ;
 ;    |7447:inst4|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst4       ; work         ;
@@ -215,7 +215,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |7447:inst7|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst7       ; work         ;
 ;    |7447:inst8|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst8       ; work         ;
 ;    |7447:inst9|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|7447:inst9       ; work         ;
-;    |anuncio:inst2|         ; 275 (275)         ; 105 (105)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|anuncio:inst2    ; work         ;
+;    |anuncio:inst2|         ; 277 (277)         ; 107 (107)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|anuncio:inst2    ; work         ;
 ;    |mem_control:inst|      ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |memory_control_ISSI|mem_control:inst ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -282,7 +282,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; anuncio:inst2|LedR_o_s[12]                          ; GND                         ; yes                    ;
 ; anuncio:inst2|LedR_o_s[14]                          ; GND                         ; yes                    ;
 ; anuncio:inst2|Data_oMEM[7]$latch                    ; anuncio:inst2|WrE           ; yes                    ;
-; anuncio:inst2|Data_oMEM[0]_1968                     ; anuncio:inst2|WrE           ; yes                    ;
+; anuncio:inst2|Data_oMEM[0]_1964                     ; anuncio:inst2|WrE           ; yes                    ;
 ; anuncio:inst2|Data_oMEM[6]$latch                    ; anuncio:inst2|WrE           ; yes                    ;
 ; anuncio:inst2|Data_oMEM[5]$latch                    ; anuncio:inst2|WrE           ; yes                    ;
 ; anuncio:inst2|Data_oMEM[4]$latch                    ; anuncio:inst2|WrE           ; yes                    ;
@@ -300,12 +300,11 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +---------------------------------------+----------------------------------------+
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
-; anuncio:inst2|est_ant[0]              ; Stuck at GND due to stuck port data_in ;
 ; anuncio:inst2|Add_s[5]                ; Stuck at GND due to stuck port data_in ;
 ; anuncio:inst2|add_alta[2]             ; Stuck at GND due to stuck port data_in ;
 ; anuncio:inst2|Add_s[6]                ; Stuck at GND due to stuck port data_in ;
 ; anuncio:inst2|add_alta[3]             ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 5 ;                                        ;
+; Total Number of Removed Registers = 4 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
 
@@ -326,12 +325,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 105   ;
+; Total registers                              ; 107   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 32    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 99    ;
+; Number of registers using Clock Enable       ; 96    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -341,7 +340,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; anuncio:inst2|k1_s                     ; 97      ;
+; anuncio:inst2|k1_s                     ; 99      ;
 ; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
@@ -381,7 +380,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Dec 05 12:53:17 2014
+    Info: Processing started: Fri Dec 12 11:18:40 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off memory_control_ISSI -c memory_control_ISSI
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file memory_control_issi.bdf
@@ -395,83 +394,83 @@ Info (12021): Found 2 design units, including 1 entities, in source file anuncio
 Info (12127): Elaborating entity "memory_control_ISSI" for the top level hierarchy
 Info (12128): Elaborating entity "mem_control" for hierarchy "mem_control:inst"
 Info (12128): Elaborating entity "anuncio" for hierarchy "anuncio:inst2"
-Warning (10492): VHDL Process Statement warning at anuncio.vhd(122): signal "estado" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (10041): Inferred latch for "display_s[28]" at anuncio.vhd(238)
-Info (10041): Inferred latch for "display_s[29]" at anuncio.vhd(238)
-Info (10041): Inferred latch for "display_s[30]" at anuncio.vhd(238)
-Info (10041): Inferred latch for "display_s[31]" at anuncio.vhd(238)
-Info (10041): Inferred latch for "display_s[24]" at anuncio.vhd(236)
-Info (10041): Inferred latch for "display_s[25]" at anuncio.vhd(236)
-Info (10041): Inferred latch for "display_s[26]" at anuncio.vhd(236)
-Info (10041): Inferred latch for "display_s[27]" at anuncio.vhd(236)
-Info (10041): Inferred latch for "display_s[20]" at anuncio.vhd(234)
-Info (10041): Inferred latch for "display_s[21]" at anuncio.vhd(234)
-Info (10041): Inferred latch for "display_s[22]" at anuncio.vhd(234)
-Info (10041): Inferred latch for "display_s[23]" at anuncio.vhd(234)
-Info (10041): Inferred latch for "display_s[16]" at anuncio.vhd(232)
-Info (10041): Inferred latch for "display_s[17]" at anuncio.vhd(232)
-Info (10041): Inferred latch for "display_s[18]" at anuncio.vhd(232)
-Info (10041): Inferred latch for "display_s[19]" at anuncio.vhd(232)
-Info (10041): Inferred latch for "display_s[12]" at anuncio.vhd(230)
-Info (10041): Inferred latch for "display_s[13]" at anuncio.vhd(230)
-Info (10041): Inferred latch for "display_s[14]" at anuncio.vhd(230)
-Info (10041): Inferred latch for "display_s[15]" at anuncio.vhd(230)
-Info (10041): Inferred latch for "display_s[8]" at anuncio.vhd(228)
-Info (10041): Inferred latch for "display_s[9]" at anuncio.vhd(228)
-Info (10041): Inferred latch for "display_s[10]" at anuncio.vhd(228)
-Info (10041): Inferred latch for "display_s[11]" at anuncio.vhd(228)
-Info (10041): Inferred latch for "display_s[4]" at anuncio.vhd(226)
-Info (10041): Inferred latch for "display_s[5]" at anuncio.vhd(226)
-Info (10041): Inferred latch for "display_s[6]" at anuncio.vhd(226)
-Info (10041): Inferred latch for "display_s[7]" at anuncio.vhd(226)
-Info (10041): Inferred latch for "display_s[0]" at anuncio.vhd(224)
-Info (10041): Inferred latch for "display_s[1]" at anuncio.vhd(224)
-Info (10041): Inferred latch for "display_s[2]" at anuncio.vhd(224)
-Info (10041): Inferred latch for "display_s[3]" at anuncio.vhd(224)
-Info (10041): Inferred latch for "LedR_o[8]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[9]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[10]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[11]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[12]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[13]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[14]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[15]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[16]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[17]" at anuncio.vhd(218)
-Info (10041): Inferred latch for "LedR_o[0]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[1]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[2]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[3]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[4]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[5]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[6]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o[7]" at anuncio.vhd(216)
-Info (10041): Inferred latch for "LedR_o_s[0]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[1]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[2]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[3]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[4]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[5]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[6]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[7]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[8]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[9]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[10]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[11]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[12]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[13]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[14]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[15]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[16]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "LedR_o_s[17]" at anuncio.vhd(207)
-Info (10041): Inferred latch for "Data_oMEM[0]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[1]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[2]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[3]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[4]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[5]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[6]" at anuncio.vhd(199)
-Info (10041): Inferred latch for "Data_oMEM[7]" at anuncio.vhd(199)
+Warning (10492): VHDL Process Statement warning at anuncio.vhd(131): signal "estado" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (10041): Inferred latch for "display_s[28]" at anuncio.vhd(244)
+Info (10041): Inferred latch for "display_s[29]" at anuncio.vhd(244)
+Info (10041): Inferred latch for "display_s[30]" at anuncio.vhd(244)
+Info (10041): Inferred latch for "display_s[31]" at anuncio.vhd(244)
+Info (10041): Inferred latch for "display_s[24]" at anuncio.vhd(242)
+Info (10041): Inferred latch for "display_s[25]" at anuncio.vhd(242)
+Info (10041): Inferred latch for "display_s[26]" at anuncio.vhd(242)
+Info (10041): Inferred latch for "display_s[27]" at anuncio.vhd(242)
+Info (10041): Inferred latch for "display_s[20]" at anuncio.vhd(240)
+Info (10041): Inferred latch for "display_s[21]" at anuncio.vhd(240)
+Info (10041): Inferred latch for "display_s[22]" at anuncio.vhd(240)
+Info (10041): Inferred latch for "display_s[23]" at anuncio.vhd(240)
+Info (10041): Inferred latch for "display_s[16]" at anuncio.vhd(238)
+Info (10041): Inferred latch for "display_s[17]" at anuncio.vhd(238)
+Info (10041): Inferred latch for "display_s[18]" at anuncio.vhd(238)
+Info (10041): Inferred latch for "display_s[19]" at anuncio.vhd(238)
+Info (10041): Inferred latch for "display_s[12]" at anuncio.vhd(236)
+Info (10041): Inferred latch for "display_s[13]" at anuncio.vhd(236)
+Info (10041): Inferred latch for "display_s[14]" at anuncio.vhd(236)
+Info (10041): Inferred latch for "display_s[15]" at anuncio.vhd(236)
+Info (10041): Inferred latch for "display_s[8]" at anuncio.vhd(234)
+Info (10041): Inferred latch for "display_s[9]" at anuncio.vhd(234)
+Info (10041): Inferred latch for "display_s[10]" at anuncio.vhd(234)
+Info (10041): Inferred latch for "display_s[11]" at anuncio.vhd(234)
+Info (10041): Inferred latch for "display_s[4]" at anuncio.vhd(232)
+Info (10041): Inferred latch for "display_s[5]" at anuncio.vhd(232)
+Info (10041): Inferred latch for "display_s[6]" at anuncio.vhd(232)
+Info (10041): Inferred latch for "display_s[7]" at anuncio.vhd(232)
+Info (10041): Inferred latch for "display_s[0]" at anuncio.vhd(230)
+Info (10041): Inferred latch for "display_s[1]" at anuncio.vhd(230)
+Info (10041): Inferred latch for "display_s[2]" at anuncio.vhd(230)
+Info (10041): Inferred latch for "display_s[3]" at anuncio.vhd(230)
+Info (10041): Inferred latch for "LedR_o[8]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[9]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[10]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[11]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[12]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[13]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[14]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[15]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[16]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[17]" at anuncio.vhd(224)
+Info (10041): Inferred latch for "LedR_o[0]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[1]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[2]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[3]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[4]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[5]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[6]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o[7]" at anuncio.vhd(222)
+Info (10041): Inferred latch for "LedR_o_s[0]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[1]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[2]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[3]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[4]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[5]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[6]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[7]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[8]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[9]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[10]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[11]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[12]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[13]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[14]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[15]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[16]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "LedR_o_s[17]" at anuncio.vhd(213)
+Info (10041): Inferred latch for "Data_oMEM[0]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[1]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[2]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[3]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[4]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[5]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[6]" at anuncio.vhd(205)
+Info (10041): Inferred latch for "Data_oMEM[7]" at anuncio.vhd(205)
 Info (12128): Elaborating entity "7447" for hierarchy "7447:inst1"
 Info (12130): Elaborated megafunction instantiation "7447:inst1"
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
@@ -577,7 +576,7 @@ Warning (13012): Latch anuncio:inst2|display_s[14] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal anuncio:inst2|estado[0]
 Warning (13012): Latch anuncio:inst2|display_s[12] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal anuncio:inst2|estado[0]
-Warning (13012): Latch anuncio:inst2|Data_oMEM[0]_1968 has unsafe behavior
+Warning (13012): Latch anuncio:inst2|Data_oMEM[0]_1964 has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal anuncio:inst2|estado[0]
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "L_B_M" is stuck at VCC
@@ -589,14 +588,14 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR15" is stuck at GND
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 491 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 494 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 12 input pins
     Info (21059): Implemented 105 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 358 logic cells
+    Info (21061): Implemented 361 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 115 warnings
-    Info: Peak virtual memory: 509 megabytes
-    Info: Processing ended: Fri Dec 05 12:53:19 2014
+    Info: Peak virtual memory: 497 megabytes
+    Info: Processing ended: Fri Dec 12 11:18:42 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
